@@ -1,0 +1,28 @@
+app:
+  build: .
+  ports:
+    - "8001:80"
+  links:
+    - db
+  volumes_from:
+    - storage
+  environment:
+    POSTGRES_HOST: db
+    POSTGRES_USER: owncloud
+    POSTGRES_PASSWORD: changeme
+storage:
+  image: busybox
+  volumes:
+    - /var/www/owncloud
+    - /var/lib/postgresql/data 
+    - /usr/share/webapps/owncloud/data/
+    - /etc/webapps/owncloud/config
+  command: true
+db:
+  image: postgres
+  volumes_from:
+    - storage
+  environment:
+    POSTGRES_USER: owncloud
+    POSTGRES_PASSWORD: changeme
+
