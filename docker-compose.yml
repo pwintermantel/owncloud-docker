@@ -1,21 +1,17 @@
 app:
-  build: .
+  image: pwintermantel/owncloud
   ports:
     - "8001:80"
   links:
     - db
   volumes_from:
     - storage
-  environment:
-    POSTGRES_HOST: db
-    POSTGRES_USER: owncloud
-    POSTGRES_PASSWORD: changeme
 storage:
   image: busybox
   volumes:
-    - /var/www/owncloud
     - /var/lib/postgresql/data 
     - /usr/share/webapps/owncloud/data/
+    - /usr/share/webapps/owncloud/apps/
     - /etc/webapps/owncloud/config
   command: true
 db:
