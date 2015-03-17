@@ -17,7 +17,7 @@ Your data is persisted within the storage container and the owncloud image can b
 
 ## Nginx SSL Proxy
 
-This particular configration is intended to sit behind a Nginx proxy. You can use the following configuration:
+This particular configuration is intended to sit behind a Nginx proxy. You can use the following configuration:
 
 ```
 server {
