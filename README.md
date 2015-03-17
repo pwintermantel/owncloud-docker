@@ -11,7 +11,7 @@ Run your Owncloud with Docker Compose.
 5. Optional: Customize the docker-compose.yml, you should at least change `POSTGRES_PASSWORD`.
 6. `docker-compose up`
 
-From there you can access the Web interface running on port 8001. If you choose the Postgres Backend make sure you enter `db` as your database host and credentials provided in the docker-compose.yml.
+From there you can access the Web interface running on port 8001 and start with the Owncloud Installation Wizard. If you choose the Postgres Backend make sure you enter `db` as your database host and credentials provided in the docker-compose.yml.
 
 Your data is persisted within the storage container and the owncloud image can be updated easily.
 
