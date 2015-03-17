@@ -8,11 +8,12 @@ Run your Owncloud with Docker Compose.
 2. `mkdir -p /usr/share/webapps/owncloud` or wherever you want to put you configuration
 3. `curl https://raw.githubusercontent.com/pwintermantel/owncloud-docker/master/docker-compose.yml -o docker-compose.yml`
 4. `cd /usr/share/webapps/owncloud`
-5. `docker-compose up`
+5. Optional: Customize the docker-compose.yml, you should at least change `POSTGRES_PASSWORD`.
+6. `docker-compose up`
 
-From there you can access the Web interface running on port 8001. If you choose the Postgres Backend make sure you enter `db` as your database host and credentials provided in the docker-compose.yml
+From there you can access the Web interface running on port 8001. If you choose the Postgres Backend make sure you enter `db` as your database host and credentials provided in the docker-compose.yml.
 
-Your data is persisted within the storage container and the owncloud image can be updadated easily.
+Your data is persisted within the storage container and the owncloud image can be updated easily.
 
 ## Nginx SSL Proxy
 
@@ -42,7 +43,7 @@ server {
 }
 ```
 
-Make shure you block the port `8001` in your firewall or bind the docker-compose.yml port configuration to "127.0.0.1:8001:80" to prevent bypassing the ssl proxy.
+Make sure you block the port `8001` in your firewall or bind the docker-compose.yml port configuration to "127.0.0.1:8001:80" to prevent bypassing the ssl proxy.
 
 ## Other settings
 
@@ -63,5 +64,5 @@ storage:
     - ./config:/etc/webapps/owncloud/config
 ```
 
-If you change it after the creation of the container you will have backup / restore the files.
+If you change it after the creation of the container you will have to backup and restore the files.
 
