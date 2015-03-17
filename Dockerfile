@@ -2,6 +2,7 @@ FROM base/arch
 
 MAINTAINER Philipp Wintermantel <philipp@wintermantel.org>
 
+
 RUN pacman --noconfirm -Sy nginx
 
 RUN pacman --noconfirm -Sy php \
@@ -38,7 +39,7 @@ ADD entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
-VOLUME ["/usr/share/webapps/owncloud/apps/", "/usr/share/webapps/owncloud/data/", "/etc/webapps/owncloud/config"]
+VOLUME ["/usr/share/webapps/owncloud/apps"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf" ]
