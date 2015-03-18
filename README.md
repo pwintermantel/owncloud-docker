@@ -33,6 +33,16 @@ server {
   ssl_certificate      /etc/ssl/certs/cloud.host.tld.crt;
   ssl_certificate_key  /etc/ssl/private/cloud.host.tld.crt;
 
+  ssl_ciphers 'AES256+EECDH:AES256+EDH::!EECDH+aRSA+RC4:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS';
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_session_cache shared:SSL:10m;
+
+  ssl_stapling on;
+  ssl_stapling_verify on;
+  ssl_prefer_server_ciphers on;
+  add_header Strict-Transport-Security max-age=31536000;
+  add_header X-Frame-Options DENY;
+
   location / {
     proxy_set_header X-Forwarded-Proto https;
     proxy_set_header X-Forwarded-Host $host;
@@ -57,11 +67,11 @@ If you prefer to have direct access to the data form the host you can change the
 
 ```
 storage:
-  image: busybox
-  volumes:
-    - ./db:/var/lib/postgresql/data 
-    - ./data:/usr/share/webapps/owncloud/data
-    - ./config:/etc/webapps/owncloud/config
+image: busybox
+volumes:
+- ./db:/var/lib/postgresql/data 
+- ./data:/usr/share/webapps/owncloud/data
+- ./config:/etc/webapps/owncloud/config
 ```
 
 If you change it after the creation of the container you will have to backup and restore the files.
